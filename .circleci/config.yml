@@ -1,0 +1,16 @@
+version: 2.1
+executors:
+  my-executor:
+    docker:
+      - image: ubuntu:16.04
+jobs:
+  build:
+    executor: my-executor
+    steps:
+      - checkout
+      - run: bash gtest.sh
+workflows:
+  version: 2
+  experiment:
+    jobs:
+      - build
