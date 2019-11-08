@@ -1,8 +1,8 @@
 #!/bin/bash
-#Ubuntu 16.04, user with sudo privilege
-sudo add-apt-repository ppa:zhaofeng-shu33/gtest
-sudo apt update
-sudo apt install libgtest-dev
+#Ubuntu 16.04, user root
+add-apt-repository ppa:zhaofeng-shu33/gtest
+apt update
+apt install g++ libgtest-dev
 
 cat <<EOF >> gtest_example.cpp
 #include <gtest/gtest.h>
