@@ -1,7 +1,7 @@
 #!/bin/bash
 #Ubuntu 16.04, user root
 set -e -x
-cat "deb http://ppa.launchpad.net/zhaofeng-shu33/gtest/ubuntu xenial main" > /etc/apt/sources.list.d/gtest.list
+echo "deb http://ppa.launchpad.net/zhaofeng-shu33/gtest/ubuntu xenial main" > /etc/apt/sources.list.d/gtest.list
 apt update
 apt install --yes g++ libgtest-dev
 
