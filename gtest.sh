@@ -28,8 +28,7 @@ class A : public testing::Test {
 };
 TEST_F(A, power) {
   EXPECT_EQ(a * a, 4);
-}:wq
-
+}
 EOF
 
 g++ -std=c++11 -lgtest_main -lgtest -lpthread fixtures.cpp -o fixtures
