@@ -46,6 +46,16 @@ EOF
 
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_BUILD_TYPE=DEBUG ..
 make
 ./fixtures
+
+cat <<EOF >> .gdbinit
+b 10
+run
+bt
+p a
+quit
+EOF
+
+gdb --batch ./fixtures
