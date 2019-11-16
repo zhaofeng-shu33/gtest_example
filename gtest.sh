@@ -4,7 +4,7 @@ set -e -x
 echo "deb http://ppa.launchpad.net/zhaofeng-shu33/gtest/ubuntu xenial main" > /etc/apt/sources.list.d/gtest.list
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B4552FED361B2FCCEAD7193C69FDF0C946D67581
 apt update
-apt install --yes g++ libgtest-dev
+apt install --yes g++ libgtest-dev cmake
 
 cat <<EOF >> gtest_example.cpp
 #include <gtest/gtest.h>
@@ -28,9 +28,25 @@ class A : public testing::Test {
 };
 TEST_F(A, power) {
   EXPECT_EQ(a * a, 4);
-}
+}:wq
+
 EOF
 
 g++ -std=c++11 -lgtest_main -lgtest -lpthread fixtures.cpp -o fixtures
 
+./fixtures
+
+cat <<EOF >> CMakeLists.txt
+cmake_minimum_required(VERSION 3.5)
+project(fixtures CXX)
+set(CMAKE_CXX_STANDARD 11)
+find_package(GTest REQUIRED)
+add_executable(fixtures fixtures.cpp)
+target_link_libraries(fixtures GTest::GTest GTest::Main)
+EOF
+
+mkdir build
+cd build
+cmake ..
+make
 ./fixtures
