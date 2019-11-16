@@ -51,6 +51,7 @@ make
 ./fixtures
 
 cat <<EOF >> .gdbinit
+set trace-commands on
 b 10
 run
 bt
