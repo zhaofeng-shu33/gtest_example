@@ -58,4 +58,6 @@ p a
 quit
 EOF
 
+echo "set auto-load safe-path /" > ~/.gdbinit
+
 gdb --batch --args ./fixtures --gtest_filter=A.power
