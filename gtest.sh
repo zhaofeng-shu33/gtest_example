@@ -16,3 +16,21 @@ EOF
 g++ -lgtest_main -lgtest -lpthread gtest_example.cpp -o gtest_example
 
 ./gtest_example
+
+cat <<EOF >> fixtures.cpp
+#include <gtest/gtest.h>
+class A : public testing::Test {
+  protected:
+    int a;
+    void SetUp() override {
+        a = 2;
+    }
+};
+TEST_F(A, power) {
+  EXPECT_EQ(a * a, 4);
+}
+EOF
+
+g++ -std=c++11 -lgtest_main -lgtest -lpthread fixtures.cpp -o fixtures
+
+./fixtures
